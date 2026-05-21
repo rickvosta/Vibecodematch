@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: vibecode-server
+    ports:
+      - "${SERVER_PORT:-2567}:2567"
+    environment:
+      NODE_ENV: production
+      PORT: 2567
+    restart: unless-stopped
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+      args:
+        VITE_COLYSEUS_URL: "${VITE_COLYSEUS_URL:-ws://localhost:2567}"
+    container_name: vibecode-client
+    ports:
+      - "${CLIENT_PORT:-80}:80"
+    depends_on:
+      - server
+    restart: unless-stopped

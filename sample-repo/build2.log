@@ -1,0 +1,44 @@
+﻿
+> vibecode-match@1.0.0 build
+> npm run build --workspace=shared && npm run build --workspace=server && npm run build --workspace=client
+
+
+> @vibecode/shared@1.0.0 build
+> tsc -p tsconfig.json
+
+
+> @vibecode/server@1.0.0 build
+> tsc
+
+
+> @vibecode/client@1.0.0 build
+> tsc && vite build
+
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+[36mvite v5.4.21 [32mbuilding for production...[36m[39m
+transforming...
+[32mΓ£ô[39m 78 modules transformed.
+[31mx[39m Build failed in 2.78s
+[31merror during build:
+[31msrc/game/GameClient.ts (2:23): "MESSAGE_SWAP_RESULT" is not exported by "../shared/src/index.ts", imported by "src/game/GameClient.ts".[31m
+file: [36mC:/Users/rvanosta/Documents/personal/AI_CandyCrush/sample-repo/client/src/game/GameClient.ts:2:23[31m
+[33m
+1: import { Client, Room } from "colyseus.js";
+2: import { MESSAGE_SWAP, MESSAGE_SWAP_RESULT, SwapMessage, SwapResultMessage } from "@vibecode/shared";
+                          ^
+3: import { IGameState } from "@vibecode/shared";
+[31m
+    at getRollupError (file:///C:/Users/rvanosta/Documents/personal/AI_CandyCrush/sample-repo/node_modules/rollup/dist/es/shared/parseAst.js:406:41)
+    at error (file:///C:/Users/rvanosta/Documents/personal/AI_CandyCrush/sample-repo/node_modules/rollup/dist/es/shared/parseAst.js:402:42)
+    at Module.error (file:///C:/Users/rvanosta/Documents/personal/AI_CandyCrush/sample-repo/node_modules/rollup/dist/es/shared/node-entry.js:17390:16)
+    at Module.traceVariable (file:///C:/Users/rvanosta/Documents/personal/AI_CandyCrush/sample-repo/node_modules/rollup/dist/es/shared/node-entry.js:17823:29)
+    at ModuleScope.findVariable (file:///C:/Users/rvanosta/Documents/personal/AI_CandyCrush/sample-repo/node_modules/rollup/dist/es/shared/node-entry.js:15413:39)
+    at ChildScope.findVariable (file:///C:/Users/rvanosta/Documents/personal/AI_CandyCrush/sample-repo/node_modules/rollup/dist/es/shared/node-entry.js:5682:38)
+    at ClassBodyScope.findVariable (file:///C:/Users/rvanosta/Documents/personal/AI_CandyCrush/sample-repo/node_modules/rollup/dist/es/shared/node-entry.js:5682:38)
+    at ChildScope.findVariable (file:///C:/Users/rvanosta/Documents/personal/AI_CandyCrush/sample-repo/node_modules/rollup/dist/es/shared/node-entry.js:5682:38)
+    at ChildScope.findVariable (file:///C:/Users/rvanosta/Documents/personal/AI_CandyCrush/sample-repo/node_modules/rollup/dist/es/shared/node-entry.js:5682:38)
+    at FunctionScope.findVariable (file:///C:/Users/rvanosta/Documents/personal/AI_CandyCrush/sample-repo/node_modules/rollup/dist/es/shared/node-entry.js:5682:38)[39m
+npm ERR! Lifecycle script `build` failed with error: 
+npm ERR! Error: command failed 
+npm ERR!   in workspace: @vibecode/client@1.0.0 
+npm ERR!   at location: C:\Users\rvanosta\Documents\personal\AI_CandyCrush\sample-repo\client 

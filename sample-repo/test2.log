@@ -1,0 +1,221 @@
+﻿
+> vibecode-match@1.0.0 test
+> npm run build --workspace=shared && npm run test --workspace=server && npm run test --workspace=client
+
+
+> @vibecode/shared@1.0.0 build
+> tsc -p tsconfig.json
+
+
+> @vibecode/server@1.0.0 test
+> jest
+
+ts-jest[ts-jest-transformer] (WARN) Define `ts-jest` config under `globals` is deprecated. Please do
+transform: {
+    <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
+},
+See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/presets#advanced
+ts-jest[ts-jest-transformer] (WARN) Define `ts-jest` config under `globals` is deprecated. Please do
+transform: {
+    <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
+},
+See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/presets#advanced
+ts-jest[ts-jest-transformer] (WARN) Define `ts-jest` config under `globals` is deprecated. Please do
+transform: {
+    <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
+},
+See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/presets#advanced
+ts-jest[ts-jest-transformer] (WARN) Define `ts-jest` config under `globals` is deprecated. Please do
+transform: {
+    <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
+},
+See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/presets#advanced
+ts-jest[ts-jest-transformer] (WARN) Define `ts-jest` config under `globals` is deprecated. Please do
+transform: {
+    <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
+},
+See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/presets#advanced
+PASS src/domain/board/matchDetection.test.ts (7.536 s)
+PASS src/domain/swap/swapValidator.test.ts (7.565 s)
+PASS src/domain/board/boardUtils.test.ts (7.58 s)
+PASS src/domain/levels/levelConfig.test.ts (7.607 s)
+PASS src/rooms/GameRoom.test.ts (12.134 s)
+  ΓùÅ Console
+System.Management.Automation.RemoteException
+    console.info
+      Γä╣∩╕Å  optional .env file not found: .env.test, .env
+System.Management.Automation.RemoteException
+      at loadEnvFile (../node_modules/@colyseus/tools/build/loadenv.js:41:13)
+System.Management.Automation.RemoteException
+    console.log
+      
+             ___      _
+            / __\___ | |_   _ ___  ___ _   _ ___
+           / /  / _ \| | | | / __|/ _ \ | | / __|
+          / /__| (_) | | |_| \__ \  __/ |_| \__ \
+          \____/\___/|_|\__, |___/\___|\__,_|___/
+                        |___/
+      
+           ┬╖ Multiplayer Framework for Node.js ┬╖
+      
+      ≡ƒÆû Consider becoming a Sponsor on GitHub ΓåÆ https://github.com/sponsors/endel
+      ≡ƒîƒ Give us a star on GitHub ΓåÆ https://github.com/colyseus/colyseus
+      Γÿü∩╕Å  Deploy and scale your project on Colyseus Cloud ΓåÆ https://cloud.colyseus.io
+System.Management.Automation.RemoteException
+      at Server.listen (../node_modules/@colyseus/core/build/Server.js:88:15)
+System.Management.Automation.RemoteException
+    console.log
+      U6uPNrpuu joined. Players: 1
+System.Management.Automation.RemoteException
+      at GameRoom.onJoin (src/rooms/GameRoom.ts:30:13)
+System.Management.Automation.RemoteException
+    console.log
+      U6uPNrpuu left. Players: 0
+System.Management.Automation.RemoteException
+      at GameRoom.onLeave (src/rooms/GameRoom.ts:35:13)
+System.Management.Automation.RemoteException
+    console.log
+      GameRoom disposing.
+System.Management.Automation.RemoteException
+      at GameRoom.onDispose (src/rooms/GameRoom.ts:39:13)
+System.Management.Automation.RemoteException
+    console.log
+      eaG0KCfrY joined. Players: 1
+System.Management.Automation.RemoteException
+      at GameRoom.onJoin (src/rooms/GameRoom.ts:30:13)
+System.Management.Automation.RemoteException
+    console.log
+      eaG0KCfrY left. Players: 0
+System.Management.Automation.RemoteException
+      at GameRoom.onLeave (src/rooms/GameRoom.ts:35:13)
+System.Management.Automation.RemoteException
+    console.log
+      GameRoom disposing.
+System.Management.Automation.RemoteException
+      at GameRoom.onDispose (src/rooms/GameRoom.ts:39:13)
+System.Management.Automation.RemoteException
+    console.log
+      0zuR_MJHE joined. Players: 1
+System.Management.Automation.RemoteException
+      at GameRoom.onJoin (src/rooms/GameRoom.ts:30:13)
+System.Management.Automation.RemoteException
+    console.log
+      KZsBEOrF7 joined. Players: 2
+System.Management.Automation.RemoteException
+      at GameRoom.onJoin (src/rooms/GameRoom.ts:30:13)
+System.Management.Automation.RemoteException
+    console.log
+      KZsBEOrF7 left. Players: 1
+System.Management.Automation.RemoteException
+      at GameRoom.onLeave (src/rooms/GameRoom.ts:35:13)
+System.Management.Automation.RemoteException
+    console.log
+      0zuR_MJHE left. Players: 0
+System.Management.Automation.RemoteException
+      at GameRoom.onLeave (src/rooms/GameRoom.ts:35:13)
+System.Management.Automation.RemoteException
+    console.log
+      GameRoom disposing.
+System.Management.Automation.RemoteException
+      at GameRoom.onDispose (src/rooms/GameRoom.ts:39:13)
+System.Management.Automation.RemoteException
+    console.log
+      jBU4VAcgw joined. Players: 1
+System.Management.Automation.RemoteException
+      at GameRoom.onJoin (src/rooms/GameRoom.ts:30:13)
+System.Management.Automation.RemoteException
+    console.log
+      rh7NHhFF6 joined. Players: 2
+System.Management.Automation.RemoteException
+      at GameRoom.onJoin (src/rooms/GameRoom.ts:30:13)
+System.Management.Automation.RemoteException
+    console.log
+      jBU4VAcgw left. Players: 1
+System.Management.Automation.RemoteException
+      at GameRoom.onLeave (src/rooms/GameRoom.ts:35:13)
+System.Management.Automation.RemoteException
+    console.log
+      rh7NHhFF6 left. Players: 0
+System.Management.Automation.RemoteException
+      at GameRoom.onLeave (src/rooms/GameRoom.ts:35:13)
+System.Management.Automation.RemoteException
+    console.log
+      GameRoom disposing.
+System.Management.Automation.RemoteException
+      at GameRoom.onDispose (src/rooms/GameRoom.ts:39:13)
+System.Management.Automation.RemoteException
+    console.log
+      iafXuH7zU joined. Players: 1
+System.Management.Automation.RemoteException
+      at GameRoom.onJoin (src/rooms/GameRoom.ts:30:13)
+System.Management.Automation.RemoteException
+    console.warn
+      DEPRECATION WARNING: use client.send(...) instead of this.send(client, ...)
+System.Management.Automation.RemoteException
+    [0m [90m 54 |[39m     [36mif[39m ([33m![39misSwapMessage(data)) {
+     [90m 55 |[39m       [36mconst[39m result[33m:[39m [33mSwapResultMessage[39m [33m=[39m { success[33m:[39m [36mfalse[39m[33m,[39m reason[33m:[39m [32m"Malformed swap message"[39m }[33m;[39m
+    [31m[1m>[22m[39m[90m 56 |[39m       [36mthis[39m[33m.[39msend(client[33m,[39m [33mMESSAGE_SWAP_RESULT[39m[33m,[39m result)[33m;[39m
+     [90m    |[39m            [31m[1m^[22m[39m
+     [90m 57 |[39m       [36mreturn[39m[33m;[39m
+     [90m 58 |[39m     }
+     [90m 59 |[39m[0m
+System.Management.Automation.RemoteException
+      at GameRoom.send (../node_modules/@colyseus/core/build/Room.js:250:26)
+      at GameRoom.handleSwap (src/rooms/GameRoom.ts:56:12)
+      at Object.swap (src/rooms/GameRoom.ts:46:12)
+      at GameRoom._onMessage (../node_modules/@colyseus/core/build/Room.js:554:44)
+      at GameRoom.Object.<anonymous>.import_core.Room._onMessage (../node_modules/@colyseus/testing/build/Room.ext.js:5:22)
+      at Receiver.receiverOnMessage (../node_modules/@colyseus/ws-transport/node_modules/ws/lib/websocket.js:1225:20)
+      at Receiver.dataMessage (../node_modules/@colyseus/ws-transport/node_modules/ws/lib/receiver.js:569:14)
+      at Receiver.getData (../node_modules/@colyseus/ws-transport/node_modules/ws/lib/receiver.js:496:10)
+      at Receiver.startLoop (../node_modules/@colyseus/ws-transport/node_modules/ws/lib/receiver.js:167:16)
+      at Receiver._write (../node_modules/@colyseus/ws-transport/node_modules/ws/lib/receiver.js:94:10)
+      at Socket.socketOnData (../node_modules/@colyseus/ws-transport/node_modules/ws/lib/websocket.js:1360:35)
+System.Management.Automation.RemoteException
+    console.log
+      iafXuH7zU left. Players: 0
+System.Management.Automation.RemoteException
+      at GameRoom.onLeave (src/rooms/GameRoom.ts:35:13)
+System.Management.Automation.RemoteException
+    console.log
+      GameRoom disposing.
+System.Management.Automation.RemoteException
+      at GameRoom.onDispose (src/rooms/GameRoom.ts:39:13)
+System.Management.Automation.RemoteException
+    console.log
+      bgK4ujQZC joined. Players: 1
+System.Management.Automation.RemoteException
+      at GameRoom.onJoin (src/rooms/GameRoom.ts:30:13)
+System.Management.Automation.RemoteException
+    console.log
+      bgK4ujQZC left. Players: 0
+System.Management.Automation.RemoteException
+      at GameRoom.onLeave (src/rooms/GameRoom.ts:35:13)
+System.Management.Automation.RemoteException
+    console.log
+      GameRoom disposing.
+System.Management.Automation.RemoteException
+      at GameRoom.onDispose (src/rooms/GameRoom.ts:39:13)
+System.Management.Automation.RemoteException
+A worker process has failed to exit gracefully and has been force exited. This is likely caused by tests leaking due to improper teardown. Try running with --detectOpenHandles to find leaks. Active timers can also cause this, ensure that .unref() was called on them.
+System.Management.Automation.RemoteException
+Test Suites: 5 passed, 5 total
+Tests:       56 passed, 56 total
+Snapshots:   0 total
+Time:        17.182 s
+Ran all test suites.
+
+> @vibecode/client@1.0.0 test
+> vitest run
+
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+
+[7m[1m[36m RUN [39m[22m[27m [36mv1.6.1[39m [90mC:/Users/rvanosta/Documents/personal/AI_CandyCrush/sample-repo/client[39m
+
+ [32mΓ£ô[39m src/game/GameClient.test.ts [2m ([22m[2m5 tests[22m[2m)[22m[90m 12[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m5 passed[39m[22m[90m (5)[39m
+[2m   Start at [22m 12:04:20
+[2m   Duration [22m 2.77s[2m (transform 126ms, setup 0ms, collect 301ms, tests 12ms, environment 0ms, prepare 1.48s)[22m
+
