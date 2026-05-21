@@ -112,7 +112,8 @@ export class GameClient {
   }
 }
 
-const COLYSEUS_URL = import.meta.env.VITE_COLYSEUS_URL ?? "ws://localhost:2567";
+const COLYSEUS_URL =
+  import.meta.env.VITE_COLYSEUS_URL ?? "ws://vibecodematch.onrender.com";
 
 /** Singleton GameClient instance shared across all scenes. */
 export const gameClient = new GameClient(COLYSEUS_URL);

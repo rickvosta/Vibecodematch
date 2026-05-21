@@ -41,7 +41,7 @@ describe("GameClient", () => {
   let client: GameClient;
 
   beforeEach(() => {
-    client = new GameClient("ws://vibecodematch.onrender.com");
+    client = new GameClient("ws://localhost:2567");
   });
 
   it("calls onConnected callbacks after joinGame resolves", async () => {
