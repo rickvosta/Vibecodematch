@@ -35,6 +35,7 @@ export interface IBoardState {
 export interface IGameState {
     currentLevel: number;
     score: number;
+    requiredScore: number;
     movesRemaining: number;
     levelStatus: string;
     board: IBoardState;
