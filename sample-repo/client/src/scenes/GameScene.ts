@@ -22,7 +22,12 @@ export class GameScene extends Phaser.Scene {
   private previousBoardCells: ICellState[] | null = null;
   private hudLevel!: Phaser.GameObjects.Text;
   private hudScore!: Phaser.GameObjects.Text;
+  private hudRequiredScore!: Phaser.GameObjects.Text;
   private hudMoves!: Phaser.GameObjects.Text;
+  private hudPlayers!: Phaser.GameObjects.Text;
+  private scoreGainText: Phaser.GameObjects.Text | null = null;
+  private lastSyncedScore: number | null = null;
+  private lastSyncedLevel: number | null = null;
 
   private cells: CellRenderRef[] = [];
   private boardOriginX = 0;
@@ -50,7 +55,17 @@ export class GameScene extends Phaser.Scene {
       color: "#ffffff",
     });
 
-    this.hudMoves = this.add.text(24, 80, "Moves: -", {
+    this.hudRequiredScore = this.add.text(24, 80, "Next level at: -", {
+      fontSize: "24px",
+      color: "#ffffff",
+    });
+
+    this.hudMoves = this.add.text(24, 110, "Moves: -", {
+      fontSize: "24px",
+      color: "#ffffff",
+    });
+
+    this.hudPlayers = this.add.text(24, 140, "Players: -", {
       fontSize: "24px",
       color: "#ffffff",
     });
@@ -87,6 +102,10 @@ export class GameScene extends Phaser.Scene {
       }
       this.unsubscribers = [];
       this.previousBoardCells = null;
+      this.scoreGainText?.destroy();
+      this.scoreGainText = null;
+      this.lastSyncedScore = null;
+      this.lastSyncedLevel = null;
       this.scale.off("resize", onResize);
     });
   }
@@ -94,9 +113,25 @@ export class GameScene extends Phaser.Scene {
   private syncStateToView(): void {
     if (!this.state) return;
 
+    if (
+      this.lastSyncedLevel !== null &&
+      this.lastSyncedScore !== null &&
+      this.lastSyncedLevel === this.state.currentLevel
+    ) {
+      const gained = this.state.score - this.lastSyncedScore;
+      if (gained > 0) {
+        this.showScoreGain(gained);
+      }
+    }
+
+    this.lastSyncedScore = this.state.score;
+    this.lastSyncedLevel = this.state.currentLevel;
+
     this.hudLevel.setText(`Level: ${this.state.currentLevel}`);
     this.hudScore.setText(`Score: ${this.state.score}`);
+    this.hudRequiredScore.setText(`Next level at: ${this.state.requiredScore}`);
     this.hudMoves.setText(`Moves: ${this.state.movesRemaining}`);
+    this.hudPlayers.setText(`Players: ${this.state.players.size}`);
 
     this.renderBoard(this.state, true);
 
@@ -129,7 +164,7 @@ export class GameScene extends Phaser.Scene {
     const boardPixelH = board.height * this.cellSize;
 
     this.boardOriginX = (viewportW - boardPixelW) / 2;
-    this.boardOriginY = (viewportH - boardPixelH) / 2 + 40;
+    this.boardOriginY = (viewportH - boardPixelH) / 2 + 80;
 
     if (this.cells.length !== boardCells.length) {
       this.rebuildBoardObjects(board.width, board.height, boardCells);
@@ -504,14 +539,43 @@ export class GameScene extends Phaser.Scene {
     });
   }
 
+  private showScoreGain(gained: number): void {
+    const { width } = this.scale;
+
+    this.scoreGainText?.destroy();
+    this.scoreGainText = this.add
+      .text(width / 2, 32, `+${gained}`, {
+        fontSize: "36px",
+        fontStyle: "bold",
+        color: "#7CFC8A",
+        stroke: "#103018",
+        strokeThickness: 6,
+      })
+      .setOrigin(0.5)
+      .setDepth(20);
+
+    this.tweens.add({
+      targets: this.scoreGainText,
+      y: 12,
+      alpha: 0,
+      duration: 900,
+      ease: "Sine.easeOut",
+      onComplete: () => {
+        this.scoreGainText?.destroy();
+        this.scoreGainText = null;
+      },
+    });
+  }
+
   private toPlainState(state: IGameState): IGameState {
     const stateRecord = state as unknown as Record<string, unknown>;
     const boardRecord = (stateRecord.board ?? {}) as Record<string, unknown>;
-    const players = stateRecord.players;
+    const players = this.toPlainPlayers(stateRecord.players);
 
     return {
       currentLevel: Number(stateRecord.currentLevel ?? 1),
       score: Number(stateRecord.score ?? 0),
+      requiredScore: Number(stateRecord.requiredScore ?? 0),
       movesRemaining: Number(stateRecord.movesRemaining ?? 0),
       levelStatus: String(stateRecord.levelStatus ?? "playing"),
       board: {
@@ -519,11 +583,48 @@ export class GameScene extends Phaser.Scene {
         height: Number(boardRecord.height ?? 0),
         cells: this.extractBoardCells(boardRecord),
       },
-      players:
-        players instanceof Map
-          ? players
-          : new Map<string, { sessionId: string; displayName: string }>(),
+      players,
     };
+  }
+
+  private toPlainPlayers(players: unknown): Map<string, { sessionId: string; displayName: string }> {
+    const plainPlayers = new Map<string, { sessionId: string; displayName: string }>();
+
+    const addPlayer = (key: string, value: unknown): void => {
+      if (!value || typeof value !== "object") {
+        return;
+      }
+
+      const playerRecord = value as Record<string, unknown>;
+      const sessionId = String(playerRecord.sessionId ?? key);
+      const displayName = String(playerRecord.displayName ?? "Player");
+      plainPlayers.set(key, { sessionId, displayName });
+    };
+
+    if (players instanceof Map) {
+      players.forEach((value, key) => addPlayer(String(key), value));
+      return plainPlayers;
+    }
+
+    if (
+      players &&
+      typeof players === "object" &&
+      "forEach" in (players as Record<string, unknown>) &&
+      typeof (players as { forEach: unknown }).forEach === "function"
+    ) {
+      (players as {
+        forEach: (cb: (value: unknown, key: string) => void) => void;
+      }).forEach((value, key) => addPlayer(String(key), value));
+      return plainPlayers;
+    }
+
+    if (players && typeof players === "object") {
+      Object.entries(players as Record<string, unknown>).forEach(([key, value]) => {
+        addPlayer(key, value);
+      });
+    }
+
+    return plainPlayers;
   }
 
   private extractBoardCells(board: unknown): ICellState[] {

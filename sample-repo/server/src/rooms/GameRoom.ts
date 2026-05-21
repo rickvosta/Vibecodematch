@@ -134,6 +134,7 @@ export class GameRoom extends Room<GameState> {
 
     this.state.currentLevel = levelNumber;
     this.state.score = 0;
+    this.state.requiredScore = config.scoreThreshold;
     this.state.movesRemaining = config.moveLimit;
     this.state.levelStatus = LevelStatus.Playing;
     this.state.board.width = board.width;
